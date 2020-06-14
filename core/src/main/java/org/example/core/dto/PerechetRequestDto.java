@@ -1,12 +1,19 @@
 package org.example.core.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PerechetRequestDto {
+    @JsonProperty
     private Long id;
+    @JsonProperty
     private Long porodaId;
+    @JsonProperty
     private Double stupen;
+    @JsonProperty
     private Integer delovyh;
+    @JsonProperty
     private Integer drovyanyh;
-    private Integer ysyhauchih;
+    @JsonProperty
     private Integer suhostoynyh;
 
     public Long getId() {
@@ -47,14 +54,6 @@ public class PerechetRequestDto {
 
     public void setDrovyanyh(Integer drovyanyh) {
         this.drovyanyh = drovyanyh;
-    }
-
-    public Integer getYsyhauchih() {
-        return ysyhauchih;
-    }
-
-    public void setYsyhauchih(Integer ysyhauchih) {
-        this.ysyhauchih = ysyhauchih;
     }
 
     public Integer getSuhostoynyh() {

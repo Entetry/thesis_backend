@@ -37,13 +37,11 @@ public class HeightMeasureService {
         this.porodaRepository=porodaRepository;
     }
 
-    public void create(List<HeightMeasureRequestDto> heightMeasureRequestDtoList) {
-        List<HeightMeasure> measures = heightMeasureRequestDtoList.stream().map(heightMeasureMapper::toHeightMeasure).collect(Collectors.toList());
-        for (HeightMeasure heightMeasure : measures) {
+    public HeightMeasureDto create(HeightMeasureRequestDto heightMeasureRequestDto) {
+            HeightMeasure heightMeasure = heightMeasureMapper.toHeightMeasure(heightMeasureRequestDto);
             heightMeasure.setPoroda(porodaRepository.findById(heightMeasure.getPoroda().getId()).orElseThrow(PorodaNotFoundException::new));
-        }
         try {
-            heightMeasureRepository.saveAll(measures);
+           return heightMeasureMapper.toHeightMeasureDto(heightMeasureRepository.save(heightMeasure));
         } catch (Exception e) {
             LOGGER.error("Failed to create user", e);
             throw e;

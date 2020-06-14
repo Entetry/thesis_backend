@@ -26,9 +26,9 @@ public class PerechetController {
     }
 
     @PostMapping
-    public void create(@RequestBody List<PerechetRequestDto> perechets) {
+    public PerechetDto create(@RequestBody PerechetRequestDto perechets) {
         try {
-            perechetService.create(perechets);
+            return  perechetService.create(perechets);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
@@ -46,9 +46,9 @@ public class PerechetController {
     }
 
     @PutMapping
-    public void update(@RequestBody List<PerechetRequestDto> perechetDtos) {
+    public void update(@RequestBody PerechetRequestDto perechetDto) {
         try {
-            perechetService.update(perechetDtos);
+            perechetService.update(perechetDto);
         } catch (HeightMeasureNotFoundException exc) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, exc.getMessage(), exc);
         } catch (Exception e) {

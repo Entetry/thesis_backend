@@ -24,6 +24,7 @@ public class PorodaMapper {
     public PorodaDto toPorodaDto(Poroda poroda){
         PorodaDto porodaDto = new PorodaDto();
         porodaDto.setPoroda(poroda.getPoroda());
+        porodaDto.setId(poroda.getId());
         porodaDto.setYarus(poroda.getYarus());
         porodaDto.setPokolenie(poroda.getPokolenie());
         porodaDto.setAverageAge(poroda.getAverageAge());
@@ -56,6 +57,9 @@ public class PorodaMapper {
         poroda.setPokolenie(porodaDto.getPokolenie());
         poroda.setHeightMeasureList(porodaDto.getHeightMeasureList().stream().map(heightMeasureMapper::toHeightMeasure).collect(Collectors.toList()));
         poroda.setPerechetList(porodaDto.getPerechetList().stream().map(perechetMapper::toPerechet).collect(Collectors.toList()));
+        if (porodaDto.getId()!=null){
+            poroda.setId(porodaDto.getId());
+        }
         TrialPlot trialPlot = new TrialPlot();
         trialPlot.setPochva(porodaDto.getPlot().getPochva());
         trialPlot.setPositionAndRelief(porodaDto.getPlot().getPositionAndRelief());
@@ -81,6 +85,7 @@ public class PorodaMapper {
         poroda.setYarus(porodaRequestDto.getYarus());
         poroda.setPokolenie(porodaRequestDto.getPokolenie());
         poroda.setAverageAge(porodaRequestDto.getAverageAge());
+
         return poroda;
     }
 }

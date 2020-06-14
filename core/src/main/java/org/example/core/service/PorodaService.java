@@ -13,6 +13,7 @@ import org.example.core.mapper.PorodaMapper;
 import org.example.core.repository.HeightMeasureRepository;
 import org.example.core.repository.PorodaInfoRepository;
 import org.example.core.repository.PorodaRepository;
+import org.example.core.repository.TrialPlotRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +25,20 @@ public class PorodaService  {
     private final PorodaRepository porodaRepository;
     private final PorodaMapper porodaMapper;
     private final PorodaInfoRepository porodaInfoRepository;
+    private final TrialPlotRepository trialPlotRepository;
 
     @Autowired
-    public PorodaService(PorodaRepository porodaRepository, PorodaMapper porodaMapper,PorodaInfoRepository porodaInfoRepository) {
+    public PorodaService(TrialPlotRepository trialPlotRepository,PorodaRepository porodaRepository, PorodaMapper porodaMapper,PorodaInfoRepository porodaInfoRepository) {
         this.porodaRepository = porodaRepository;
         this.porodaMapper = porodaMapper;
         this.porodaInfoRepository=porodaInfoRepository;
+        this.trialPlotRepository=trialPlotRepository;
     }
 
     public void create(PorodaRequestDto porodaDto) {
         Poroda poroda = porodaMapper.toPoroda(porodaDto);
         poroda.setPoroda(porodaInfoRepository.findById(porodaDto.getPorodaId()).orElseThrow(PorodaNotFoundException::new));
+        poroda.setPlot(trialPlotRepository.findById(porodaDto.getPlotId()).orElseThrow(TrialPlotNotFoundException::new));
         try {
             porodaRepository.save(poroda);
         } catch (Exception e) {

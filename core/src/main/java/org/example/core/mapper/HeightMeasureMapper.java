@@ -28,11 +28,11 @@ public class HeightMeasureMapper {
     }
     public HeightMeasure toHeightMeasure(HeightMeasureDto heightMeasureDto){
         HeightMeasure heightMeasure = new HeightMeasure();
-        if (heightMeasure.getId()!=null){
+        if (heightMeasureDto.getId()!=null){
             heightMeasure.setId(heightMeasureDto.getId());
         }
         heightMeasure.setDiameter(heightMeasureDto.getDiameter());
-        heightMeasure.setHeight(heightMeasure.getHeight());
+        heightMeasure.setHeight(heightMeasureDto.getHeight());
         Poroda poroda = new Poroda();
         poroda.setAverageAge(heightMeasureDto.getPoroda().getAverageAge());
         poroda.setId(heightMeasureDto.getPoroda().getId());
@@ -48,9 +48,9 @@ public class HeightMeasureMapper {
             heightMeasure.setId(heightMeasureDto.getId());
         }
         heightMeasure.setDiameter(heightMeasureDto.getDiameter());
-        heightMeasure.setHeight(heightMeasure.getHeight());
+        heightMeasure.setHeight(heightMeasureDto.getHeight());
         Poroda poroda = new Poroda();
-        poroda.setId(heightMeasureDto.getId());
+        poroda.setId(heightMeasureDto.getPoroda());
         heightMeasure.setPoroda(poroda);
         return heightMeasure;
     }

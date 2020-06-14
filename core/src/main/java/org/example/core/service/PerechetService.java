@@ -37,13 +37,13 @@ public class PerechetService  {
         this.porodaRepository=porodaRepository;
     }
 
-    public void create(List<PerechetRequestDto> perechetDto) {
-        List<Perechet> perechetList = perechetDto.stream().map(perechetMapper::toPerechet).collect(Collectors.toList());
-        for (Perechet perechet : perechetList) {
-            perechet.setPoroda(porodaRepository.findById(perechet.getPoroda().getId()).orElseThrow(PorodaNotFoundException::new));
-        }
+    public PerechetDto create(PerechetRequestDto perechetDto) {
+        Perechet perechet = perechetMapper.toPerechet(perechetDto);
+        perechet.setPoroda(porodaRepository.findById(perechet.getPoroda().getId()).orElseThrow(PorodaNotFoundException::new));
+
         try {
-            perechetRepository.saveAll(perechetList);
+
+            return perechetMapper.toPerechetDto(perechetRepository.save(perechet));
         } catch (Exception e) {
             LOGGER.error("Failed to create user", e);
             throw e;
@@ -60,10 +60,10 @@ public class PerechetService  {
         }
     }
 
-    public void update(List<PerechetRequestDto> perechetDto) {
-        perechetDto.stream().forEach(perechetRequestDto -> perechetRepository.findById(perechetRequestDto.getId()).orElseThrow(PerechetNotFoundException::new));
+    public void update(PerechetRequestDto perechetDto) {
+        perechetRepository.findById(perechetDto.getId()).orElseThrow(PerechetNotFoundException::new);
         try {
-            perechetRepository.saveAll(perechetDto.stream().map(perechetMapper::toPerechet).collect(Collectors.toList()));
+            perechetRepository.save(perechetMapper.toPerechet(perechetDto));
         } catch (Exception e) {
             LOGGER.error("could not update trial plot!!", e);
             throw e;

@@ -26,9 +26,9 @@ public class HeightMeasureController {
     }
 
     @PostMapping
-    public void create(@RequestBody List<HeightMeasureRequestDto> heightMeasureRequestDtoList) {
+    public HeightMeasureDto create(@RequestBody HeightMeasureRequestDto heightMeasureRequestDto) {
         try {
-            heightMeasureService.create(heightMeasureRequestDtoList);
+           return heightMeasureService.create(heightMeasureRequestDto);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
