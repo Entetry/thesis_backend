@@ -1,18 +1,3 @@
-CREATE TABLE "vp_geodata" (
-	"id" serial NOT NULL,
-	"plot_id" integer NOT NULL,
-	"coordinateX" DECIMAL NOT NULL,
-	"coordinateY" DECIMAL NOT NULL,
-	"directionAngle" DECIMAL NOT NULL,
-	"horizontalDistance" DECIMAL NOT NULL,
-	"insideAngle" DECIMAL NOT NULL,
-	"isBindingLine" BOOLEAN NOT NULL,
-	"rhumb" varchar(255) NOT NULL,
-	CONSTRAINT "vp_geodata_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
 
 CREATE TABLE "vp_trial_plot" (
 	"id" serial NOT NULL,
@@ -31,12 +16,51 @@ CREATE TABLE "vp_trial_plot" (
 	"pochva" integer NOT NULL,
 	"ispolnitel" varchar(255) NOT NULL,
 	"plho" integer NOT NULL,
+	"poroda" integer NOT NULL,
 	CONSTRAINT "vp_trial_plot_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
 
+CREATE TABLE "vp_areas" (
+	"id" BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+	"geom" GEOMETRY ,
+	"relascopefactor" DOUBLE PRECISION ,
+	"ishalfplotsize" boolean ,
+	"num_lch" BIGINT ,
+	"photo" TEXT,
+	"_db_porod" VARCHAR ,
+	"coords" VARCHAR ,
+	"vp_trial_plot_id" BIGINT,
+	"display_name" VARCHAR,
+	CONSTRAINT "vp_areas_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
 
+
+CREATE TABLE "vp_privjazka" (
+	"id" serial NOT NULL,
+	"id_plot" integer ,
+	"number" integer NOT NULL,
+	"x" DOUBLE PRECISION NOT NULL,
+	"y" DOUBLE PRECISION NOT NULL,
+	"az" DOUBLE PRECISION NOT NULL,
+	"l" integer NOT NULL,
+	"plot_navigation_id" integer,
+	"horizontaldistance" DOUBLE PRECISION,
+	"slopedistance" DOUBLE PRECISION,
+	"bias" integer,
+	"pr" integer,
+	"ms" integer,
+	"rumb" integer,
+	"ug" DOUBLE PRECISION,
+	"vug" DOUBLE PRECISION,
+	CONSTRAINT "vp_privjazka_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "vp_privjazka" ADD CONSTRAINT "vp_privjazka_fk0" FOREIGN KEY ("plot_navigation_id") REFERENCES "vp_trial_plot"("id");
 
 CREATE TABLE "vp_poroda" (
 	"id" serial NOT NULL,
@@ -57,9 +81,7 @@ CREATE TABLE "vp_perechet" (
 	"poroda_id" integer NOT NULL,
 	"stupen_tolshchiny" DECIMAL NOT NULL,
 	"delovyh" DECIMAL NOT NULL,
-	"poludelovyh" DECIMAL NOT NULL,
 	"drovyanyh" DECIMAL NOT NULL,
-	"ysyhauchih" DECIMAL NOT NULL,
 	"suhostoynyh" DECIMAL NOT NULL,
 	CONSTRAINT "vp_perechet_pk" PRIMARY KEY ("id")
 ) WITH (

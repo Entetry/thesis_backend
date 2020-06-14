@@ -60,10 +60,10 @@ public class PerechetService  {
         }
     }
 
-    public void update(PerechetDto perechetDto) {
-        Perechet perechet = perechetRepository.findById(perechetDto.getId()).orElseThrow(PerechetNotFoundException::new);
+    public void update(List<PerechetRequestDto> perechetDto) {
+        perechetDto.stream().forEach(perechetRequestDto -> perechetRepository.findById(perechetRequestDto.getId()).orElseThrow(PerechetNotFoundException::new));
         try {
-            perechetRepository.save(perechetMapper.toPerechet(perechetDto));
+            perechetRepository.saveAll(perechetDto.stream().map(perechetMapper::toPerechet).collect(Collectors.toList()));
         } catch (Exception e) {
             LOGGER.error("could not update trial plot!!", e);
             throw e;

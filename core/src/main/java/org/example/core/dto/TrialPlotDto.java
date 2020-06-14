@@ -22,17 +22,24 @@ public class TrialPlotDto {
     private String ispolnitel;
     private Double ploshadProbi;
     private Plho plho;
+    private PorodaInfo porodaInfo;
     private List<PorodaDto> porodaList = new ArrayList<>();
-    private Double summPlSech;
+    private List<Geodata> geodataList = new ArrayList<>();
 
-
-
-    public Double getSummPlSech() {
-        return summPlSech;
+    public List<Geodata> getGeodataList() {
+        return geodataList;
     }
 
-    public void setSummPlSech(Double summPlSech) {
-        this.summPlSech = summPlSech;
+    public void setGeodataList(List<Geodata> geodataList) {
+        this.geodataList = geodataList;
+    }
+
+    public PorodaInfo getPorodaInfo() {
+        return porodaInfo;
+    }
+
+    public void setPorodaInfo(PorodaInfo porodaInfo) {
+        this.porodaInfo = porodaInfo;
     }
 
     public String getIspolnitel() {

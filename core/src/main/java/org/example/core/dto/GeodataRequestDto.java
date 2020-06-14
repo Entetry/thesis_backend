@@ -1,32 +1,22 @@
-package org.example.core.entity;
+package org.example.core.dto;
 
+import org.example.core.entity.TrialPlot;
 
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "vp_privjazka")
-public class Geodata extends AbstractEntity {
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
+public class GeodataRequestDto {
     private Long id;
-    @Column(name = "plot_navigation_id")
-    private Long trialPlot;
-    @Column(name = "number")
-    private Integer number;
-    @Column(name = "`x`")
+    private Long trialPlotId;
     private Double x;
-    @Column(name = "`y`")
     private Double y;
-    @Column(name = "`ug`")
     private Double directionAngle;
-    @Column(name = "`horizontaldistance`")
     private Double horizontalDistance;
-    @Column(name = "`vug`")
     private Double insideAngle;
-    @Column(name = "`rumb`")
     private Double rhumb;
+    private Integer number;
 
     public Integer getNumber() {
         return number;
@@ -44,12 +34,12 @@ public class Geodata extends AbstractEntity {
         this.id = id;
     }
 
-    public Long getTrialPlot() {
-        return trialPlot;
+    public Long getTrialPlotId() {
+        return trialPlotId;
     }
 
-    public void setTrialPlot(Long trialPlot) {
-        this.trialPlot = trialPlot;
+    public void setTrialPlotId(Long trialPlotId) {
+        this.trialPlotId = trialPlotId;
     }
 
     public Double getX() {
@@ -91,6 +81,7 @@ public class Geodata extends AbstractEntity {
     public void setInsideAngle(Double insideAngle) {
         this.insideAngle = insideAngle;
     }
+
     public Double getRhumb() {
         return rhumb;
     }

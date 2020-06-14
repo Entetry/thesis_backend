@@ -3,13 +3,14 @@ package org.example.backend.controller;
 
 import org.example.core.dto.TrialPlotDto;
 import org.example.core.dto.TrialPlotRequestDto;
-import org.example.core.entity.TrialPlot;
 import org.example.core.exception.TrialPlotNotFoundException;
 import org.example.core.service.TrialPlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -25,7 +26,8 @@ public class TrialPlotController {
     public TrialPlotDto create(@RequestBody TrialPlotRequestDto trialPlotRequestDto) {
         try {
             return trialPlotService.create(trialPlotRequestDto);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
@@ -33,7 +35,11 @@ public class TrialPlotController {
     public TrialPlotDto getTrialPlotById(@PathVariable Long id){
         try {
             return trialPlotService.getTrialPlotById(id);
-        } catch (Exception e) {
+        }
+        catch (TrialPlotNotFoundException exc) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exc.getMessage(), exc);
+        }
+        catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
@@ -67,4 +73,5 @@ public class TrialPlotController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
+
 }

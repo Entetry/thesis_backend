@@ -20,6 +20,7 @@ public class BaseInfoController {
     private final PochvaService pochvaService;
     private final ForestTypeService forestTypeService;
     private final PokrovService pokrovService;
+    private final PorodaInfoService porodaInfoService;
 
     @Autowired
     public BaseInfoController(
@@ -31,7 +32,8 @@ public class BaseInfoController {
         TymService tymService,
         PochvaService pochvaService,
         ForestTypeService forestTypeService,
-        PokrovService pokrovService)
+        PokrovService pokrovService,
+        PorodaInfoService porodaInfoService)
     {
         this.leshosService = leshosService;
         this.lesnichestvoService = lesnichestvoService;
@@ -42,6 +44,7 @@ public class BaseInfoController {
         this.pochvaService = pochvaService;
         this.forestTypeService = forestTypeService;
         this.pokrovService = pokrovService;
+        this.porodaInfoService=porodaInfoService;
     }
     @GetMapping("/lesnichestvas")
     @ResponseBody
@@ -93,4 +96,6 @@ public class BaseInfoController {
     public List<Pokrov> getAllPokrovs(){
         return pokrovService.getAll();
     }
+    @GetMapping("/porodaInfo")
+    public List<PorodaInfo> getAllPorodas(){return porodaInfoService.getAll();}
 }

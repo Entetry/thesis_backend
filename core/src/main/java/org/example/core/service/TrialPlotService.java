@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.RuntimeOperationsException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -32,6 +30,7 @@ public class TrialPlotService {
     private final PokrovRepository pokrovRepository;
     private final ForestTypeRepository forestTypeRepository;
     private final PochvaRepository pochvaRepository;
+    private final PorodaInfoRepository porodaInfoRepository;
     @Autowired
     public TrialPlotService(TrialPlotRepository trialPlotRepository,
                             TrialPlotMapper trialPlotMapper,
@@ -43,7 +42,8 @@ public class TrialPlotService {
                             TymRepository tymRepository,
                             PokrovRepository pokrovRepository,
                             ForestTypeRepository forestTypeRepository,
-                            PochvaRepository pochvaRepository) {
+                            PochvaRepository pochvaRepository,
+                            PorodaInfoRepository porodaInfoRepository) {
         this.trialPlotRepository = trialPlotRepository;
         this.trialPlotMapper = trialPlotMapper;
         this.quickMath=quickMath;
@@ -56,6 +56,7 @@ public class TrialPlotService {
         this.pochvaRepository=pochvaRepository;
         this.forestTypeRepository=forestTypeRepository;
         this.pokrovRepository=pokrovRepository;
+        this.porodaInfoRepository=porodaInfoRepository;
     }
 
     public TrialPlotDto create(TrialPlotRequestDto trialPlotRequestDto) {
@@ -69,6 +70,7 @@ public class TrialPlotService {
         trialPlot.setPochva(pochvaRepository.findById(trialPlotRequestDto.getPochvaId()).orElseThrow(PochvaNotFoundException::new));
         trialPlot.setTym(tymRepository.findById(trialPlotRequestDto.getTymId()).orElseThrow(TymNotFoundException::new));
         trialPlot.setPokrov(pokrovRepository.findById(trialPlotRequestDto.getTymId()).orElseThrow(PochvaNotFoundException::new));
+        trialPlot.setPorodaInfo(porodaInfoRepository.findById((trialPlotRequestDto.getPorodaId())).orElseThrow(PorodaInfoNotFoundException::new));
         try {
           return   trialPlotMapper.toTrialPlotDto(trialPlotRepository.save(trialPlot));
         } catch (Exception e) {
@@ -103,82 +105,66 @@ public class TrialPlotService {
     public List<TrialPlot> getAllTrialPlots(){
         return StreamSupport.stream(trialPlotRepository.findAll().spliterator(),false).collect(Collectors.toList());
     }
-
-
-    public TrialPlotDto getCalculatedTrialPlotById(Long id)   {
+    public TrialPlotDto  getCalculatedTrialPlotById(Long id){
         TrialPlot trialPlot = trialPlotRepository.findById(id).orElseThrow(TrialPlotNotFoundException::new);
         TrialPlotDto trialPlotDto = trialPlotMapper.toTrialPlotDto(trialPlot);
-        if(!trialPlotDto.getPorodaList().isEmpty())
-        //Рассчитываем сумму площадей сечения и количество деревьев
-        for (PorodaDto porodaDto: trialPlotDto.getPorodaList()) {
-            if (!porodaDto.getPerechetList().isEmpty() && !porodaDto.getHeightMeasureList().isEmpty()) {
-                int treeQuantity = 0;
-                double summPlSech = 0.0;
-                double averageDiameter = 0.0;
-                double stock = 0.0;
-               // porodaDto.setAverageHeight(quickMath.calculateAverageHeigh(porodaDto.getHeightMeasureList()));
-                for (PerechetDto perechetDto : porodaDto.getPerechetList()) {
-                    summPlSech += perechetDto.getStupen() * 100 * Math.PI * perechetDto.getDelovyh() * perechetDto.getDrovyanyh() / 4;
-                    treeQuantity += perechetDto.getDelovyh() + perechetDto.getDrovyanyh();
+
+        if(!trialPlotDto.getPorodaList().isEmpty()){
+            double totalZapas=0.0;
+            for (PorodaDto porodaDto: trialPlotDto.getPorodaList()) {
+                double sumPlSech = 0.0,averageHeight=0.0,averageZapas=0.0,plPoperSechForOneTree=0.0,averageDiameter=0.0;
+                int amountDelovih=0,totalAmount =0,amountSuhostoi=0;
+                double [][] coefHeightMatrix;
+                if (!porodaDto.getPerechetList().isEmpty() && !porodaDto.getHeightMeasureList().isEmpty()) {
+                    coefHeightMatrix=quickMath.calculateCoefHeightMatrix(porodaDto.getHeightMeasureList());
+                    //Считаем высоты для графика и среднюю высоту
+                    for (HeightMeasureDto heightMeasureDto: porodaDto.getHeightMeasureList()){
+                        heightMeasureDto.setDependentHeight(coefHeightMatrix[0][0]*Math.pow(heightMeasureDto.getDiameter(),2)+coefHeightMatrix[1][0]*heightMeasureDto.getHeight()+coefHeightMatrix[2][0]);
+                        averageHeight+=heightMeasureDto.getDependentHeight()/porodaDto.getHeightMeasureList().size();
+                    }
+                    porodaDto.setAverageHeight(averageHeight);
+                    //Считаем запас( Для этого вычисляем высоты по ступеням толщины, считаем обьём и потом уже запас)
+                    //ВОЗМОЖНО НУЖНО БУДЕТ ДИАМЕТР ПЕРЕВЕСТИ В САНЦИМЕТРЫ
+                    for(PerechetDto perechetDto : porodaDto.getPerechetList()){
+                        double height= (coefHeightMatrix[0][0]*Math.pow(perechetDto.getStupen(),2)+coefHeightMatrix[1][0]*(perechetDto.getStupen())+coefHeightMatrix[2][0]);
+                        averageZapas+=quickMath.calculateTreeVolume(perechetDto,height)*perechetDto.getDrovyanyh()*perechetDto.getDrovyanyh();
+                        //Рассчитываем сумму площадей сечения и количество деревьев
+                        sumPlSech+=(Math.pow(perechetDto.getStupen()/100,2)  * Math.PI * (perechetDto.getDelovyh() + perechetDto.getDrovyanyh())) / 4;
+                        amountDelovih+=perechetDto.getDelovyh();
+                        amountSuhostoi+=perechetDto.getSuhostoynyh();
+                        totalAmount+=perechetDto.getDelovyh()+perechetDto.getDrovyanyh();
+                    }
+                    porodaDto.setAverageZapas(averageZapas);
+                    porodaDto.setTotalAmount(totalAmount);
+                    porodaDto.setAmoutDelovih(amountDelovih);
+                    porodaDto.setSummPloshSech(sumPlSech);
+                    //Считаем средний диаметр (
+                    porodaDto.setAverageDiameter(200 * Math.sqrt((porodaDto.getSummPloshSech()) / (Math.PI*porodaDto.getTotalAmount())));
+                    //Считаем полноту
+                    porodaDto.setPolnota(porodaDto.getSummPloshSech()/quickMath.calculateNormalSumPlSech(porodaDto));
+                    //Считаем класс бонитета
+                    porodaDto.setBonitetClass(quickMath.calculateBonitetClass(porodaDto));
+                    //Определяем процент выхода деловой древесины ВОЗМОЖНО НЕ ПРАВИЛЬНО процент выхода по запасу
+
+                    //Считаем общий запас
+                    totalZapas+=porodaDto.getAverageZapas();
                 }
-                porodaDto.setSummPloshSech(summPlSech);
-                //считаем средний диаметр
-                porodaDto.setAverageDiameter(200 * Math.pow(porodaDto.getSummPloshSech() / Math.PI, 2));
-                //porodaDto.setAverageZapas(quickMath.CalculateZapas(porodaDto.getPerechetList(),porodaDto.getHeightMeasureList()));
             }
+                //Определяем коэфицент состава для каждой породы по запасу получ запас на порды делим на общий запас
+            for (PorodaDto porodaDto:trialPlotDto.getPorodaList()
+                 ) {
+                if (!porodaDto.getPerechetList().isEmpty() && !porodaDto.getHeightMeasureList().isEmpty()) {
+                    double koef = 10 *porodaDto.getAverageZapas()/totalZapas;
+                    porodaDto.setYieldPercentage((100*porodaDto.getAverageZapas()/totalZapas));
+                    porodaDto.setSostavCoeficient( String.valueOf(Math.round(koef)) + porodaDto.getPoroda().getName().charAt(0));}
+            }
+
         }
-        return trialPlotDto;
+
+    return trialPlotDto;
     }
 
 
-    //    public TrialPlotDto getTrialPlot(Long id) {
-//        TrialPlot trialPlot = trialPlotRepository.findById(id).orElseThrow(TrialPlotNotFoundException::new);
-//        Double ploshad = Math.PI * trialPlot.getPorodaList().get(1).getPerechetList().get(1).getStupen() / 4;
-//        List<Double> doubles = new ArrayList<>();
-//        double summPloshSech = 0.00;
-//        double averagePloshSech = 0.00;
-//        double averageDiameter = 0.00;
-//        int quantity = 0;
-//        double averageHeight = 0.00;
-//        Double zapas = 0.00;
-//        Double a1 = 0.00;
-//        for (Poroda poroda : trialPlot.getPorodaList()) {
-//            for (Perechet perechet : poroda.getPerechetList()) {
-//                summPloshSech = summPloshSech + Math.pow(perechet.getStupen(), 2) * Math.PI * perechet.getDelovyh() / 4;
-//                quantity = quantity + perechet.getDelovyh();
-//            }
-//            averagePloshSech = summPloshSech / quantity;
-//            averageDiameter = 200 * Math.sqrt(averagePloshSech / Math.PI);
-//            for (HeightMeasure heightMeasure : poroda.getHeightMeasureList()) {
-//                averageHeight = averageHeight + Math.pow(heightMeasure.getDiameter(), 2) * Math.PI * heightMeasure.getHeight() / 4;
-//                switch (poroda.getPoroda()) {
-//                    case ("Береза"):
-//                        a1 = 0.697597;
-//                        break;
-//                    case ("Сосна"):
-//                        a1 = 0.734917;
-//                        break;
-//                    case ("Ель"):
-//                        a1 = 0.637832;
-//                        break;
-//                    case ("Ольха черная"):
-//                        a1 = 0.724094;
-//                        break;
-//                    case ("Осина"):
-//                        a1 = 0.610513;
-//                        break;
-//                    case ("Дуб"):
-//                        a1 = 0.661662;
-//                        break;
-//                    default:
-//                        a1 = 0.0;
-//                        break;
-//                }
-//
-//                zapas += 0.0000785398163 * Math.pow(heightMeasure.getDiameter(), 2) * Math.pow(heightMeasure.getHeight(), (2 * a1 + 1)) / ((2 * a1 + 1) * Math.pow((heightMeasure.getHeight() - 1.3), (2 * a1)));
-//            }
-//        }
-//        averageHeight = averageHeight / summPloshSech;
-//    }
+
 }
 

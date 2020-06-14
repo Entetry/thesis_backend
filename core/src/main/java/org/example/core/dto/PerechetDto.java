@@ -6,7 +6,6 @@ public class PerechetDto {
     private Double stupen;
     private Integer delovyh;
     private Integer drovyanyh;
-    private Integer ysyhauchih;
     private Integer suhostoynyh;
 
     public Long getId() {
@@ -39,14 +38,6 @@ public class PerechetDto {
 
     public void setDrovyanyh(Integer drovyanyh) {
         this.drovyanyh = drovyanyh;
-    }
-
-    public Integer getYsyhauchih() {
-        return ysyhauchih;
-    }
-
-    public void setYsyhauchih(Integer ysyhauchih) {
-        this.ysyhauchih = ysyhauchih;
     }
 
     public Integer getSuhostoynyh() {

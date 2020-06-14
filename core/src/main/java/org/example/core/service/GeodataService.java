@@ -1,10 +1,12 @@
 package org.example.core.service;
 
+import org.example.core.dto.GeodataRequestDto;
 import org.example.core.dto.TrialPlotDto;
 import org.example.core.entity.Geodata;
 import org.example.core.entity.TrialPlot;
 import org.example.core.exception.GeodataNotFoundException;
 import org.example.core.exception.TrialPlotNotFoundException;
+import org.example.core.mapper.GeodataMapper;
 import org.example.core.repository.GeodataRepository;
 import org.example.core.repository.TrialPlotRepository;
 import org.slf4j.Logger;
@@ -12,17 +14,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GeodataService {
     private static final Logger LOGGER = LoggerFactory.getLogger(GeodataService.class);
     private final GeodataRepository geodataRepository;
+    private final TrialPlotRepository trialPlotRepository;
+    private final GeodataMapper geodataMapper;
     @Autowired
-    public GeodataService(GeodataRepository geodataRepository){
+    public GeodataService(GeodataRepository geodataRepository,TrialPlotRepository trialPlotRepository,GeodataMapper geodataMapper){
      this.geodataRepository=geodataRepository;
+     this.trialPlotRepository=trialPlotRepository;
+     this.geodataMapper=geodataMapper;
     }
-    public void create(Geodata geodata) {
+    public Geodata create(GeodataRequestDto geodataRequestDto) {
+        Geodata geodata = geodataMapper.toGeodata(geodataRequestDto);
         try {
-            geodataRepository.save(geodata);
+            return geodataRepository.save(geodata);
         } catch (Exception e) {
             LOGGER.error("Failed to create trial plot", e);
             throw e;

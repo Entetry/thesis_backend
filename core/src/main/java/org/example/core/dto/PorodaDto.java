@@ -18,6 +18,60 @@ public class PorodaDto {
     private Double summPloshSech;
     private Double averageHeight;
     private Double averageZapas;
+    private Integer amoutDelovih;
+    private Integer totalAmount;
+    private Double polnota;
+    private String bonitetClass;
+    private String sostavCoeficient;
+    private Double yieldPercentage;
+
+    public Double getYieldPercentage() {
+        return yieldPercentage;
+    }
+
+    public void setYieldPercentage(Double yieldPercentage) {
+        this.yieldPercentage = yieldPercentage;
+    }
+
+    public String getSostavCoeficient() {
+        return sostavCoeficient;
+    }
+
+    public void setSostavCoeficient(String sostavCoeficient) {
+        this.sostavCoeficient = sostavCoeficient;
+    }
+
+    public String getBonitetClass() {
+        return bonitetClass;
+    }
+
+    public void setBonitetClass(String bonitetClass) {
+        this.bonitetClass = bonitetClass;
+    }
+
+    public Double getPolnota() {
+        return polnota;
+    }
+
+    public void setPolnota(Double polnota) {
+        this.polnota = polnota;
+    }
+
+    public Integer getAmoutDelovih() {
+        return amoutDelovih;
+    }
+
+    public void setAmoutDelovih(Integer amoutDelovih) {
+        this.amoutDelovih = amoutDelovih;
+    }
+
+    public Integer getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Integer totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
     public Double getAverageZapas() {
         return averageZapas;

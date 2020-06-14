@@ -26,6 +26,7 @@ public class PorodaMapper {
         porodaDto.setPoroda(poroda.getPoroda());
         porodaDto.setYarus(poroda.getYarus());
         porodaDto.setPokolenie(poroda.getPokolenie());
+        porodaDto.setAverageAge(poroda.getAverageAge());
         porodaDto.setHeightMeasureList(poroda.getHeightMeasureList().stream().map(heightMeasureMapper::toHeightMeasureDto).collect(Collectors.toList()));
         porodaDto.setPerechetList(poroda.getPerechetList().stream().map(perechetMapper::toPerechetDto).collect(Collectors.toList()));
         TrialPlotDto trialPlotDto = new TrialPlotDto();

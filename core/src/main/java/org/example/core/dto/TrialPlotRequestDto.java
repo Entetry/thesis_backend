@@ -42,6 +42,16 @@ public class TrialPlotRequestDto {
     private List<PorodaDto> porodaList = new ArrayList<>();
     @JsonProperty
     private Double summPlSech;
+    @JsonProperty
+    private Long porodaId;
+
+    public Long getPorodaId() {
+        return porodaId;
+    }
+
+    public void setPorodaId(Long porodaId) {
+        this.porodaId = porodaId;
+    }
 
     public Long getId() {
         return id;

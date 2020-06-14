@@ -51,15 +51,23 @@ public class TrialPlot extends AbstractEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "plho")
     private Plho plho;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "poroda")
+    private PorodaInfo porodaInfo;
     @OneToMany(mappedBy = "plot", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Poroda> porodaList = new ArrayList<>();
     @OneToMany(mappedBy = "trialPlot", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Geodata> geodatas = new ArrayList<>();
-//    @OneToMany(mappedBy = "plot", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Podrost> podrostList = new ArrayList<>();
-//    @OneToMany(mappedBy = "plot", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Podlesok> podlesokList = new ArrayList<>();
 
+
+
+    public PorodaInfo getPorodaInfo() {
+        return porodaInfo;
+    }
+
+    public void setPorodaInfo(PorodaInfo porodaInfo) {
+        this.porodaInfo = porodaInfo;
+    }
 
     public Leshos getLeshoz() {
         return leshoz;

@@ -18,8 +18,6 @@ public class Perechet extends AbstractEntity {
     private Integer delovyh;
     @Column(name = "drovyanyh")
     private Integer drovyanyh;
-    @Column(name = "ysyhauchih")
-    private Integer ysyhauchih;
     @Column(name = "suhostoynyh")
     private Integer suhostoynyh;
 
@@ -61,14 +59,6 @@ public class Perechet extends AbstractEntity {
 
     public void setDrovyanyh(Integer drovyanyh) {
         this.drovyanyh = drovyanyh;
-    }
-
-    public Integer getYsyhauchih() {
-        return ysyhauchih;
-    }
-
-    public void setYsyhauchih(Integer ysyhauchih) {
-        this.ysyhauchih = ysyhauchih;
     }
 
     public Integer getSuhostoynyh() {

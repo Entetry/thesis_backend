@@ -1,13 +1,12 @@
 package org.example.core.mapper;
 
 
-import dto.TrialPlotDto;
+
 import org.example.core.dto.PerechetDto;
 import org.example.core.dto.PerechetRequestDto;
 import org.example.core.dto.PorodaDto;
 import org.example.core.entity.Perechet;
 import org.example.core.entity.Poroda;
-import org.example.core.entity.TrialPlot;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +18,6 @@ public class PerechetMapper {
         perechetDto.setDelovyh(perechet.getDelovyh());
         perechetDto.setDrovyanyh(perechet.getDrovyanyh());
         perechetDto.setSuhostoynyh(perechet.getSuhostoynyh());
-        perechetDto.setYsyhauchih(perechet.getYsyhauchih());
         PorodaDto porodaDto = new PorodaDto();
         porodaDto.setAverageAge(perechet.getPoroda().getAverageAge());
         porodaDto.setId(perechet.getPoroda().getId());
@@ -39,7 +37,6 @@ public class PerechetMapper {
         perechet.setDelovyh(perechetDto.getDelovyh());
         perechet.setDrovyanyh(perechetDto.getDrovyanyh());
         perechet.setSuhostoynyh(perechetDto.getSuhostoynyh());
-        perechet.setYsyhauchih(perechetDto.getYsyhauchih());
         Poroda poroda = new Poroda();
         poroda.setAverageAge(perechetDto.getPoroda().getAverageAge());
         poroda.setId(perechetDto.getPoroda().getId());
@@ -58,7 +55,6 @@ public class PerechetMapper {
         perechet.setDelovyh(perechetDto.getDelovyh());
         perechet.setDrovyanyh(perechetDto.getDrovyanyh());
         perechet.setSuhostoynyh(perechetDto.getSuhostoynyh());
-        perechet.setYsyhauchih(perechetDto.getYsyhauchih());
         Poroda poroda = new Poroda();
         poroda.setId(perechetDto.getPorodaId());
         perechet.setPoroda(poroda);

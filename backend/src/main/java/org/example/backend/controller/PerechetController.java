@@ -1,12 +1,13 @@
 package org.example.backend.controller;
 
-import org.example.core.dto.GeodataRequestDto;
-import org.example.core.dto.TrialPlotDto;
-import org.example.core.entity.Geodata;
-import org.example.core.exception.GeodataNotFoundException;
-import org.example.core.exception.TrialPlotNotFoundException;
-import org.example.core.service.GeodataService;
-import org.example.core.service.TrialPlotService;
+import org.example.core.dto.HeightMeasureDto;
+import org.example.core.dto.HeightMeasureRequestDto;
+import org.example.core.dto.PerechetDto;
+import org.example.core.dto.PerechetRequestDto;
+import org.example.core.entity.Perechet;
+import org.example.core.exception.HeightMeasureNotFoundException;
+import org.example.core.service.HeightMeasureService;
+import org.example.core.service.PerechetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,18 +17,18 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/geodata")
-public class GeodataController {
-    private final GeodataService geodataService;
+@RequestMapping("/perechet")
+public class PerechetController {
+    private final PerechetService perechetService;
     @Autowired
-    public GeodataController(GeodataService geodataService){
-        this.geodataService=geodataService;
+    public PerechetController(PerechetService perechetService){
+        this.perechetService=perechetService;
     }
 
     @PostMapping
-    public Geodata create(@RequestBody GeodataRequestDto geodata) {
+    public void create(@RequestBody List<PerechetRequestDto> perechets) {
         try {
-            return geodataService.create(geodata);
+            perechetService.create(perechets);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
@@ -36,8 +37,8 @@ public class GeodataController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         try {
-            geodataService.delete(id);
-        } catch (GeodataNotFoundException exc) {
+            perechetService.delete(id);
+        } catch (HeightMeasureNotFoundException exc) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, exc.getMessage(), exc);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
@@ -45,10 +46,10 @@ public class GeodataController {
     }
 
     @PutMapping
-    public void update(@RequestBody Geodata geodata) {
+    public void update(@RequestBody List<PerechetRequestDto> perechetDtos) {
         try {
-            geodataService.update(geodata);
-        } catch (GeodataNotFoundException exc) {
+            perechetService.update(perechetDtos);
+        } catch (HeightMeasureNotFoundException exc) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, exc.getMessage(), exc);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);

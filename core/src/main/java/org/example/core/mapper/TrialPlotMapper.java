@@ -1,6 +1,5 @@
 package org.example.core.mapper;
 
-import dto.PodrostDto;
 
 import org.example.core.dto.TrialPlotDto;
 import org.example.core.dto.TrialPlotRequestDto;
@@ -38,7 +37,9 @@ public class TrialPlotMapper {
         trialPlotDto.setVidel(trialPlot.getVidel());
         trialPlotDto.setPositionAndRelief(trialPlot.getPositionAndRelief());
         trialPlotDto.setPochva(trialPlot.getPochva());
+        trialPlotDto.setPorodaInfo(trialPlot.getPorodaInfo());
         trialPlotDto.setPorodaList(trialPlot.getPorodaList().stream().map(porodaMapper::toPorodaDto).collect(Collectors.toList()));
+        trialPlotDto.setGeodataList(trialPlot.getGeodatas());
         return trialPlotDto;
     }
     public TrialPlot toTrialPlot(TrialPlotDto trialPlotDto){
@@ -57,9 +58,12 @@ public class TrialPlotMapper {
         trialPlot.setPochva(trialPlotDto.getPochva());
         trialPlot.setId(trialPlotDto.getId());
         trialPlot.setRayon(trialPlotDto.getRayon());
+        trialPlot.setPlho(trialPlotDto.getPlho());
         trialPlot.setIspolnitel(trialPlotDto.getIspolnitel());
         trialPlot.setPloshadProbi(trialPlotDto.getPloshadProbi());
+        trialPlot.setPorodaInfo(trialPlotDto.getPorodaInfo());
         trialPlot.setPorodaList(trialPlotDto.getPorodaList().stream().map(porodaMapper::toPoroda).collect(Collectors.toList()));
+        trialPlot.setGeodatas(trialPlot.getGeodatas());
         return trialPlot;
     }
     public TrialPlot toTrialPlot(TrialPlotRequestDto trialPlotDto){

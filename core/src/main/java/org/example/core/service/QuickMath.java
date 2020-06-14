@@ -6,6 +6,7 @@ import org.example.core.dto.PerechetDto;
 import org.example.core.dto.PorodaDto;
 import org.example.core.dto.TrialPlotDto;
 import org.example.core.entity.Perechet;
+import org.example.core.entity.Poroda;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -25,7 +26,113 @@ public class QuickMath {
         }
         return summPlSech;
     }
-    public Double calculateAverageHeighAndStupenHeight(List<HeightMeasureDto>  heightMeasureDtoList, List<PerechetDto> perechets){
+    public String calculateBonitetClass(PorodaDto porodaDto){
+        double ikb ;
+        if (porodaDto.getPoroda().getId()>100000 && porodaDto.getPoroda().getId()<300000){
+            ikb = (10.1017 / 1.17246) - ((18 - 3.79246) / ((1.73549 - Math.exp(-0.021318 * Math.pow(8898.00,2.4527)))) / 1.17246);
+        }
+        else if(porodaDto.getPoroda().getId()>300000 && porodaDto.getPoroda().getId()<4000000){
+            ikb = (10.1017 / 1.17246) - ((18 - 3.79246) / ((1.73549 - Math.exp(-0.021318 * Math.pow(8898.00,2.4527)))) / 1.17246);
+        }
+        else {
+            ikb=0.0;
+            return "0";
+        }
+        if(ikb<-1.50)
+        {
+            return "IБ";
+        } else if(ikb>-1.49&& ikb <-0.5)
+        {
+            return  "IA";
+
+        }else if(ikb>-0.49 && ikb<0.5)
+        {
+            return  "I";
+
+        }else if(ikb>0.51 && ikb<1.5)
+        {
+            return  "II";
+
+        }else if(ikb>1.51 && ikb<2.5)
+        {
+            return  "III";
+
+        }else if(ikb>2.51 &&ikb<3.5)
+        {
+            return  "IV";
+
+        }else if(ikb>3.51 &&ikb< 4.5)
+        {
+            return  "V";
+
+        }else if(ikb>4.51 &&ikb< 5.5)
+        {
+            return  "Vа";
+        }
+        else if(ikb>5.5)
+            return  "Vб";
+
+        return "0";
+    }
+    public double calculateNormalSumPlSech(PorodaDto porodaDto){
+        double summPlSech;
+        switch (porodaDto.getPoroda().getName()){
+            case ("Береза"):
+                summPlSech=(0.0003 * Math.pow(porodaDto.getAverageHeight(),3) - 0.0248 * Math.pow(porodaDto.getAverageHeight(),2) + 1.4938 * porodaDto.getAverageHeight() +6.0969);
+                break;
+            case ("Сосна"):
+                summPlSech=(0.0016 * Math.pow(porodaDto.getAverageHeight(),3) - 0.1274 * Math.pow(porodaDto.getAverageHeight(),2) + 3.5964 * porodaDto.getAverageHeight() +3.4709);
+                break;
+            case ("Ель"):
+                summPlSech=(0.0008 * Math.pow(porodaDto.getAverageHeight(),3) - 0.0826 * Math.pow(porodaDto.getAverageHeight(),2) + 3.3437 * porodaDto.getAverageHeight() +0.6896);
+                break;
+            case ("Ольха черная"):
+                summPlSech=((-0.0005) * Math.pow(porodaDto.getAverageHeight(),3) - 0.0017 * Math.pow(porodaDto.getAverageHeight(),2) + 1.7901 * porodaDto.getAverageHeight() +1.7634);
+                break;
+            case ("Осина"):
+                summPlSech=(0.0006 * Math.pow(porodaDto.getAverageHeight(),3) - 0.0567 * Math.pow(porodaDto.getAverageHeight(),2) + 2.4333 * porodaDto.getAverageHeight() +0.5828);
+                break;
+            case ("Дуб"):
+                summPlSech=(0.0003 * Math.pow(porodaDto.getAverageHeight(),3) - 0.0387 * Math.pow(porodaDto.getAverageHeight(),2) + 2.0145 * porodaDto.getAverageHeight() +3.8245);
+                break;
+            case ("Ольха cерая"):
+                summPlSech=(0.0009 * Math.pow(porodaDto.getAverageHeight(),3) - 0.0762 * Math.pow(porodaDto.getAverageHeight(),2) + 2.6573 * porodaDto.getAverageHeight() +0.6479);
+            default:
+                summPlSech=(0.0008 * Math.pow(porodaDto.getAverageHeight(),3) - 0.0826 * Math.pow(porodaDto.getAverageHeight(),2) + 3.3437 * porodaDto.getAverageHeight() +0.6896);
+                break;
+        }
+        return summPlSech;
+    }
+    public double calculateTreeVolume(PerechetDto perechetDto,double heigh) {
+        double a1 = 0.0;
+        double volume = 0.0;
+        switch (perechetDto.getPoroda().getPoroda().getName()) {
+            case ("Береза"):
+                a1 = 0.697597;
+                break;
+            case ("Сосна"):
+                a1 = 0.734917;
+                break;
+            case ("Ель"):
+                a1 = 0.637832;
+                break;
+            case ("Ольха черная"):
+                a1 = 0.724094;
+                break;
+            case ("Осина"):
+                a1 = 0.610513;
+                break;
+            case ("Дуб"):
+                a1 = 0.661662;
+                break;
+            default:
+                a1 = 0.0;
+                break;
+        }
+        volume = (0.0000785398163 * Math.pow(perechetDto.getStupen(), 2) )* Math.pow(heigh, (2 * a1 + 1)) / ((2 * a1 + 1) * Math.pow((heigh - 1.3), (2 * a1)));
+        return volume;
+    }
+    public double[][] calculateCoefHeightMatrix(List<HeightMeasureDto>  heightMeasureDtoList){
         double x = 0, y = 0, x2 = 0, xy = 0, x3 = 0, x4 = 0, x2y = 0, maxx = 0;
         for (HeightMeasureDto heightMeasureDto:
              heightMeasureDtoList) {
@@ -53,55 +160,13 @@ public class QuickMath {
        double[][] mat2 = new double[3][1];
         mat2[0][0] = x2y;
         mat2[1][0]=xy;
-        mat2[2][2]=y;
+        mat2[2][0]=y;
        double[][] m4 = inverse(mat);
-       double[][] mat3= new double[3][1];
+       double[][] mat3;
        mat3= multiply(m4,mat2);
-       double averageHeight=0.0;
-        for (HeightMeasureDto heightMeasureDto: heightMeasureDtoList){
-            heightMeasureDto.setDependentHeight(mat3[0][0]*Math.pow(heightMeasureDto.getDiameter(),2)+mat3[1][0]*heightMeasureDto.getHeight()+mat3[2][0]);
-            averageHeight+=heightMeasureDto.getDependentHeight()/heightMeasureDtoList.size();
-        }
-
-       return averageHeight;
+       return mat3;
     }
-//    public double CalculateZapas(List<PerechetDto> perechetDtos,List<HeightMeasureDto> heightMeasureDtos) {
-//        double averageVolume = 0.0;
-//        double a1 = 0.0;
-//        double averageZapas = 0.0;
-//        for (PerechetDto perechetDto :
-//                perechetDtos) {
-//
-//            switch (perechetDto.getPoroda().getPoroda()) {
-//                case ("Береза"):
-//                    a1 = 0.697597;
-//                    break;
-//                case ("Сосна"):
-//                    a1 = 0.734917;
-//                    break;
-//                case ("Ель"):
-//                    a1 = 0.637832;
-//                    break;
-//                case ("Ольха черная"):
-//                    a1 = 0.724094;
-//                    break;
-//                case ("Осина"):
-//                    a1 = 0.610513;
-//                    break;
-//                case ("Дуб"):
-//                    a1 = 0.661662;
-//                    break;
-//                default:
-//                    a1 = 0.0;
-//                    break;
-//            }
-//
-//            averageZapas += 0.0000785398163 * Math.pow(perechetDto.getStupen(), 2) * Math.pow(stupenHeight, (2 * a1 + 1)) / ((2 * a1 + 1) * Math.pow((stupenHeight - 1.3), (2 * a1)));
-//            previusStupen = currentStupen;
-//        }
-//
-//    return averageZapas;
-//    }
+
 
 
 
