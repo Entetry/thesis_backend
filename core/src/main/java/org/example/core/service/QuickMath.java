@@ -129,7 +129,7 @@ public class QuickMath {
                 a1 = 0.0;
                 break;
         }
-        volume = (0.0000785398163 * Math.pow(perechetDto.getStupen(), 2) )* Math.pow(heigh, (2 * a1 + 1)) / ((2 * a1 + 1) * Math.pow((heigh - 1.3), (2 * a1)));
+        volume = (0.0000785398163 * Math.pow(perechetDto.getStupen(), 2) )* Math.pow(heigh, ((2* a1) + 1)) / (((2 * a1) + 1) * Math.pow((heigh - 1.3), (2 * a1)));
         return volume;
     }
     public double[][] calculateCoefHeightMatrix(List<HeightMeasureDto>  heightMeasureDtoList){

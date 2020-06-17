@@ -6,6 +6,7 @@ import org.example.core.dto.TrialPlotRequestDto;
 import org.example.core.exception.TrialPlotNotFoundException;
 import org.example.core.service.TrialPlotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,10 +14,11 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RequestMapping("/trialplots")
 public class TrialPlotController {
     private final TrialPlotService trialPlotService;
+
     @Autowired
     public TrialPlotController(TrialPlotService trialPlotService){
         this.trialPlotService=trialPlotService;
@@ -47,9 +49,14 @@ public class TrialPlotController {
     public TrialPlotDto getCalculatedTrialPlotById(@PathVariable Long id){
         try {
             return trialPlotService.getCalculatedTrialPlotById(id);
-        } catch (Exception e) {
+        }
+        catch (TrialPlotNotFoundException exc) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exc.getMessage(), exc);
+        }
+        catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
+
     }
 
     @DeleteMapping("/{id}")
@@ -73,5 +80,10 @@ public class TrialPlotController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
-
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public List<TrialPlotDto> search(@RequestParam(value = "search") String search) {
+        List<TrialPlotDto> dto =  trialPlotService.search(search);
+        return dto;
+    }
 }

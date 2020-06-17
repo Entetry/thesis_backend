@@ -17,13 +17,39 @@ public class PorodaDto {
     private Double averageDiameter;
     private Double summPloshSech;
     private Double averageHeight;
-    private Double averageZapas;
     private Integer amoutDelovih;
     private Integer totalAmount;
     private Double polnota;
     private String bonitetClass;
     private String sostavCoeficient;
     private Double yieldPercentage;
+    private Double suhStock;
+    private Double delStock;
+    private Double rastStock;
+
+    public Double getSuhStock() {
+        return suhStock;
+    }
+
+    public void setSuhStock(Double suhStock) {
+        this.suhStock = suhStock;
+    }
+
+    public Double getDelStock() {
+        return delStock;
+    }
+
+    public void setDelStock(Double delStock) {
+        this.delStock = delStock;
+    }
+
+    public Double getRastStock() {
+        return rastStock;
+    }
+
+    public void setRastStock(Double rastStock) {
+        this.rastStock = rastStock;
+    }
 
     public Double getYieldPercentage() {
         return yieldPercentage;
@@ -71,14 +97,6 @@ public class PorodaDto {
 
     public void setTotalAmount(Integer totalAmount) {
         this.totalAmount = totalAmount;
-    }
-
-    public Double getAverageZapas() {
-        return averageZapas;
-    }
-
-    public void setAverageZapas(Double averageZapas) {
-        this.averageZapas = averageZapas;
     }
 
     public Double getAverageHeight() {

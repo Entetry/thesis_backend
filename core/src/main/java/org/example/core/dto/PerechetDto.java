@@ -7,6 +7,15 @@ public class PerechetDto {
     private Integer delovyh;
     private Integer drovyanyh;
     private Integer suhostoynyh;
+    private Double height;
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
 
     public Long getId() {
         return id;
