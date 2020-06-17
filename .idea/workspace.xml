@@ -2,61 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="921b6e28-7d2b-45b4-aac0-f468a39cda4f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/Property.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/search/SearchCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/search/TrialPlotSpecification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/search/TrialPlotSpecificationBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/BaseInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/BaseInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/GeodataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/GeodataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/HeightMeasureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/HeightMeasureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/PerechetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/PerechetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/PorodaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/PorodaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/TrialPlotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/TrialPlotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/BaseInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/BaseInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/GeodataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/GeodataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/HeightMeasureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/HeightMeasureController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/PerechetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/PerechetController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/PorodaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/PorodaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/TrialPlotController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/org/example/backend/controller/TrialPlotController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/dto/PerechetDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/dto/PerechetDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/dto/PorodaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/dto/PorodaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/ForestTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/ForestTypeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/GeodataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/GeodataRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/HeightMeasureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/HeightMeasureRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/LeshosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/LeshosRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/LesnichestvoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/LesnichestvoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/OblastRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/OblastRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PerechetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PerechetRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PlhoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PlhoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PochvaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PochvaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PodrostPodlesokRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PodrostPodlesokRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PokrovRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PokrovRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PorodaInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PorodaInfoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PorodaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/PorodaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/RayonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/RayonRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/TymRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/repository/TymRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/service/QuickMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/service/QuickMath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/service/TrialPlotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/service/TrialPlotService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/dto/PerechetDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/dto/PerechetDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/dto/PorodaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/dto/PorodaDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/ForestTypeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/ForestTypeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/org/example/core/service/GeodataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/org/example/core/service/GeodataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/GeodataRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/GeodataRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/HeightMeasureRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/HeightMeasureRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/LeshosRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/LeshosRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/LesnichestvoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/LesnichestvoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/OblastRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/OblastRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PerechetRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PerechetRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PlhoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PlhoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PochvaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PochvaRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PodrostPodlesokRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PodrostPodlesokRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PokrovRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PokrovRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PorodaInfoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PorodaInfoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PorodaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/PorodaRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/RayonRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/RayonRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/TymRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/repository/TymRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/service/TrialPlotService.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/service/TrialPlotService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/target/classes/org/example/core/service/GeodataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/target/classes/org/example/core/service/GeodataService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +137,7 @@
       <workItem from="1591037320411" duration="6129000" />
       <workItem from="1591119573885" duration="8275000" />
       <workItem from="1591283895694" duration="119223000" />
-      <workItem from="1591983142250" duration="72949000" />
+      <workItem from="1591983142250" duration="76911000" />
     </task>
     <servers />
   </component>
@@ -199,6 +149,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="70" key="#Assign_Data_Sources/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1587581873091" />
+    <state x="361" y="70" key="#Auto_Import" timestamp="1592426203469">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#Auto_Import/0.0.1536.824@0.0.1536.824" timestamp="1592426203469" />
     <state x="361" y="70" width="826" height="683" key="#Project_Structure" timestamp="1591976712818">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -239,66 +193,66 @@
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1591876959640" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591450461134" />
-    <state width="1493" height="314" key="GridCell.Tab.0.bottom" timestamp="1592426004624">
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom" timestamp="1592430285304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271550" />
-    <state width="1493" height="314" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592426004624" />
-    <state width="1493" height="314" key="GridCell.Tab.0.center" timestamp="1592426004623">
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592430285304" />
+    <state width="1493" height="204" key="GridCell.Tab.0.center" timestamp="1592430285304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271549" />
-    <state width="1493" height="314" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592426004623" />
-    <state width="1493" height="314" key="GridCell.Tab.0.left" timestamp="1592426004621">
+    <state width="1493" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592430285304" />
+    <state width="1493" height="204" key="GridCell.Tab.0.left" timestamp="1592430285304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271549" />
-    <state width="1493" height="314" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592426004621" />
-    <state width="1493" height="314" key="GridCell.Tab.0.right" timestamp="1592426004623">
+    <state width="1493" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592430285304" />
+    <state width="1493" height="204" key="GridCell.Tab.0.right" timestamp="1592430285304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271550" />
-    <state width="1493" height="314" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592426004623" />
-    <state width="1493" height="314" key="GridCell.Tab.1.bottom" timestamp="1592426004624">
+    <state width="1493" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592430285304" />
+    <state width="1493" height="204" key="GridCell.Tab.1.bottom" timestamp="1592430285305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271550" />
-    <state width="1493" height="314" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592426004624" />
-    <state width="1493" height="314" key="GridCell.Tab.1.center" timestamp="1592426004624">
+    <state width="1493" height="204" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592430285305" />
+    <state width="1493" height="204" key="GridCell.Tab.1.center" timestamp="1592430285305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271550" />
-    <state width="1493" height="314" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1592426004624" />
-    <state width="1493" height="314" key="GridCell.Tab.1.left" timestamp="1592426004624">
+    <state width="1493" height="204" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1592430285305" />
+    <state width="1493" height="204" key="GridCell.Tab.1.left" timestamp="1592430285304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271550" />
-    <state width="1493" height="314" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1592426004624" />
-    <state width="1493" height="314" key="GridCell.Tab.1.right" timestamp="1592426004624">
+    <state width="1493" height="204" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1592430285304" />
+    <state width="1493" height="204" key="GridCell.Tab.1.right" timestamp="1592430285305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="330" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592319271550" />
-    <state width="1493" height="314" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1592426004624" />
-    <state width="1493" height="99" key="GridCell.Tab.2.bottom" timestamp="1592239439084">
+    <state width="1493" height="204" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1592430285305" />
+    <state width="1493" height="204" key="GridCell.Tab.2.bottom" timestamp="1592430285305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="99" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592239439084" />
-    <state width="1493" height="263" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592140220551" />
-    <state width="1493" height="99" key="GridCell.Tab.2.center" timestamp="1592239439084">
+    <state width="1493" height="204" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592430285305" />
+    <state width="1493" height="204" key="GridCell.Tab.2.center" timestamp="1592430285305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="99" key="GridCell.Tab.2.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592239439084" />
-    <state width="1493" height="263" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1592140220551" />
-    <state width="1493" height="99" key="GridCell.Tab.2.left" timestamp="1592239439084">
+    <state width="1493" height="204" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1592430285305" />
+    <state width="1493" height="204" key="GridCell.Tab.2.left" timestamp="1592430285305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="99" key="GridCell.Tab.2.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592239439084" />
-    <state width="1493" height="263" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1592140220551" />
-    <state width="1493" height="99" key="GridCell.Tab.2.right" timestamp="1592239439084">
+    <state width="1493" height="204" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1592430285305" />
+    <state width="1493" height="204" key="GridCell.Tab.2.right" timestamp="1592430285305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="99" key="GridCell.Tab.2.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1592239439084" />
-    <state width="1493" height="263" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1592140220551" />
+    <state width="1493" height="204" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1592430285305" />
     <state width="189" height="457" key="HiddenNamespacesPopup" timestamp="1587579183284">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -367,11 +321,6 @@
           <url>file://$PROJECT_DIR$/core/src/main/java/org/example/core/service/QuickMath.java</url>
           <line>162</line>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/GeodataController.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/backend/src/main/java/org/example/backend/controller/PorodaController.java</url>

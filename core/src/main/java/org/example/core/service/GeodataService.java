@@ -49,7 +49,6 @@ public class GeodataService {
     }
 
     public void update(Geodata geodata) {
-
         Geodata geodata1 = geodataRepository.findById(geodata.getId()).orElseThrow(TrialPlotNotFoundException::new);
         try {
             geodataRepository.save(geodata);
@@ -61,4 +60,7 @@ public class GeodataService {
     public Geodata getTrialPlotById(String id) {
         return geodataRepository.findById(Long.parseLong(id)).orElseThrow(GeodataNotFoundException::new);
     }
+//    public List<Geodata> getAllGeodataByPlotId(TrialPlot trialPlot){
+//        return geodataRepository.findAllByTrialPlot(trialPlot);
+//    }
 }
